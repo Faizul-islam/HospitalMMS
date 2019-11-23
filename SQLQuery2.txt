@@ -1,0 +1,28 @@
+
+
+
+
+
+
+
+
+USE [HospitalMSDb]
+GO
+CREATE TABLE [dbo].[Manufacturer](
+	[Id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[ManufacturerName] [nvarchar] (300) NULL
+	
+)
+CREATE TABLE [dbo].[Role](
+	[Id] [bigint] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[PersonName] [nvarchar](200) NULL,
+	[PhoneNo] [nvarchar](20) NULL,
+	[Email] [nvarchar](100) NULL,
+	[BirthDate] [datetime] NOT NULL,
+	[Gender] [int] NOT NULL,
+	[PresentAddress] [nvarchar](max) NULL,
+	[PermanentAddress] [nvarchar](max) NULL,
+	[PhotoPath] [nvarchar](max) NULL,
+)
+
+

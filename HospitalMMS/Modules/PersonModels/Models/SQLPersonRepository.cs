@@ -17,17 +17,17 @@ namespace HospitalMMS.Modules.PersonModels.Models
 
         public Person Add(Person person)
         {
-            context.Persons.Add(person);
+            context.Person.Add(person);
             context.SaveChanges();
             return person;
         }
 
         public Person Delete(int id)
         {
-            Person person = context.Persons.Find(id);
+            Person person = context.Person.Find(id);
             if(person != null)
             {
-                context.Persons.Remove(person);
+                context.Person.Remove(person);
                 context.SaveChanges();
             }
             return person;
@@ -35,17 +35,17 @@ namespace HospitalMMS.Modules.PersonModels.Models
 
         public IEnumerable<Person> GetAllPerson()
         {
-            return context.Persons;
+            return context.Person;
         }
 
         public Person GetPerson(int Id)
         {
-            return context.Persons.Find(Id);
+            return context.Person.Find(Id);
         }
 
         public Person Update(Person personChanges)
         {
-            var person = context.Persons.Attach(personChanges);
+            var person = context.Person.Attach(personChanges);
             person.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
             return personChanges;

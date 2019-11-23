@@ -1,22 +1,18 @@
 ﻿@model HospitalMMS.Modules.PersonModels.Models.Person
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
 <h4>Person</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RoleId" class="control-label"></label>
-                <input asp-for="RoleId" class="form-control" />
-                <span asp-validation-for="RoleId" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="PersonName" class="control-label"></label>
                 <input asp-for="PersonName" class="form-control" />
@@ -33,9 +29,9 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Age" class="control-label"></label>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Gender" class="control-label"></label>
@@ -53,7 +49,32 @@
                 <span asp-validation-for="PermanentAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="PhotoPath" class="control-label"></label>
+                <input asp-for="PhotoPath" class="form-control" />
+                <span asp-validation-for="PhotoPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IUser" class="control-label"></label>
+                <input asp-for="IUser" class="form-control" />
+                <span asp-validation-for="IUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDate" class="control-label"></label>
+                <input asp-for="IDate" class="form-control" />
+                <span asp-validation-for="IDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EUsaer" class="control-label"></label>
+                <input asp-for="EUsaer" class="form-control" />
+                <span asp-validation-for="EUsaer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EDate" class="control-label"></label>
+                <input asp-for="EDate" class="form-control" />
+                <span asp-validation-for="EDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

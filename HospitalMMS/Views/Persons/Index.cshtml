@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Index page</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,9 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RoleId)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.PersonName)
             </th>
@@ -25,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Age)
+                @Html.DisplayNameFor(model => model.BirthDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Gender)
@@ -36,15 +33,27 @@
             <th>
                 @Html.DisplayNameFor(model => model.PermanentAddress)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EUsaer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EDate)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoleId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PersonName)
             </td>
@@ -55,7 +64,7 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Age)
+                @Html.DisplayFor(modelItem => item.BirthDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
@@ -65,6 +74,21 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PermanentAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotoPath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EUsaer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EDate)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
