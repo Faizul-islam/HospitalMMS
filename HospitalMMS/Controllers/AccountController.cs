@@ -115,8 +115,20 @@ namespace HospitalMMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                var name = model.UserName;
+                var email = model.Email;
+                string modelval;
+
+                if(name != null)
+                {
+                    modelval = name;
+                }
+                else
+                {
+                    modelval = email;
+                }
                 var result = await signInManager.PasswordSignInAsync(
-                    model.Email, model.Password, model.RememberMe, false);
+                    modelval, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
