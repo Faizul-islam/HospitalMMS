@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HospitalMMS.Data;
+using HospitalMMS.Modules.AccountModule.Models;
 using HospitalMMS.Modules.PersonModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -37,7 +38,7 @@ namespace HospitalMMS
             //Configure and use SQL Server with entity framework core.
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("HospitalMSDbConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 2;
@@ -51,7 +52,7 @@ namespace HospitalMMS
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
 
-            services.AddScoped<IPersonRepository, SQLPersonRepository>();
+          //  services.AddScoped<IPersonRepository, SQLPersonRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
