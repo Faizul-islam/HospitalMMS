@@ -19,5 +19,9 @@ namespace HospitalMMS.Modules.AccountModule.Models
 
         [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
+
+        #region Other
+        public string RoleName { get; set; }
+        #endregion
     }
 }
