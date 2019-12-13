@@ -249,7 +249,7 @@ namespace HospitalMMS.Controllers
                 Gender = user.Gender,
                 PresentAddress = user.PresentAddress,
                 PermanentAddress = user.PermanentAddress,
-                PhotoPath = user.PhotoPath,
+               // PhotoPath = user.PhotoPath,
                 Claims = userClaims.Select(c => c.Value).ToList(),
                 Roles = userRoles
             };
@@ -277,7 +277,7 @@ namespace HospitalMMS.Controllers
                 user.Gender = model.Gender;
                 user.PresentAddress = model.PresentAddress;
                 user.PermanentAddress = model.PermanentAddress;
-                user.PhotoPath = model.PhotoPath;
+               // user.PhotoPath = model.PhotoPath;
 
                 var result = await userManager.UpdateAsync(user);
 

@@ -13,7 +13,7 @@ namespace HospitalMMS.Modules.AccountModule.Models
         public GenderEnum? Gender { get; set; }
         public String PresentAddress { get; set; }
         public String PermanentAddress { get; set; }
-        public String PhotoPath { get; set; }
+       // public String PhotoPath { get; set; }
         public int? IUser { get; set; }
         public DateTime? IDate { get; set; }
         public int? EUser { get; set; }
