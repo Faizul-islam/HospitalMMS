@@ -1,0 +1,100 @@
+﻿
+
+
+
+@model PatientViewModel
+
+
+@{
+    ViewBag.Title = "Edit Patient";
+    var photoPath = "~/images/" + (Model.ExistingPhotoPath ?? "noimage.jpg");
+}
+
+    <form enctype="multipart/form-data" asp-controller="Employees" asp-action="Edit" method="post" class="mt-3">
+        <div class="form-group row">
+            <input hidden asp-for="Id" />
+            <input hidden asp-for="Ids" />
+            <input hidden asp-for="ExistingPhotoPath" />
+            <label asp-for="PersonId" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="PersonId" class="form-control" placeholder="Name" />
+                <span asp-validation-for="PersonId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="ProblemCategoryId" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="ProblemCategoryId" class="form-control" placeholder="ProblemCategory" />
+                <span asp-validation-for="ProblemCategoryId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="ProblemDescription" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="ProblemDescription" class="form-control" placeholder="ProblemDescription" />
+                <span asp-validation-for="ProblemDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="EmployeeId" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="EmployeeId" class="form-control" placeholder="EmployeeId" />
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+        </div>
+        @*<div class="form-group row">
+            <label asp-for="EmpCatId" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <select asp-for="EmpCatId" class="custom-select mr-sm-2"
+                        asp-items="Html.GetEnumSelectList<EmployeeCategor>()">
+                    <option value="">Please Select</option>
+                </select>
+                <span asp-validation-for="EmpCatId" class="text-danger"></span>
+            </div>
+        </div>*@
+        <div class="form-group row">
+            <label asp-for="Date" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Date" class="form-control" placeholder="Date" value="@DateTime.Now" />
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <div class="custom-file">
+                    <input asp-for="Photo" class="form-control custom-file-input" />
+                    <label class="custom-file-label">Click here to change Photo</label>
+                </div>
+            </div>
+        </div>
+
+        @*Display the existing employee photo*@
+        <div class="form-group row col-sm-4 offset-4">
+            <img class="imageThumbnail" src="@photoPath" asp-append-version="true" />
+        </div>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Upate</button>
+                <a asp-controller="Employees" asp-action="index" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
+
+        @section Scripts {
+            <script>
+                $(document).ready(function () {
+                    $('.custom-file-input').on("change", function () {
+                        var fileName = $(this).val().split("\\").pop();
+                        $(this).next('.custom-file-label').html(fileName);
+                    });
+                });
+            </script>
+        }
+
+    </form>

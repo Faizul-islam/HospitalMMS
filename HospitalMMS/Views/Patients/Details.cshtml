@@ -1,0 +1,52 @@
+﻿
+@model PatientViewModel
+
+@{
+    ViewBag.Title = "Patrient List";
+    var photoPath = "~/images/" + (Model.Patient.PhotoPath ?? "noimage.jpg");
+}
+
+<h3>@Model.PageTitle</h3>
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Patient.PersonId</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@photoPath" asp-append-version="true" style="height:100px; width:100px;" />
+
+                <h4>Employee ID: @Model.Patient.ProblemCategoryId</h4>
+                <h4>Email: @Model.Patient.ProblemDescription</h4>
+                <h4>Email: @Model.Patient.EmployeeId</h4>
+                <h4>JoiningDate: @Model.Patient.Date</h4>
+                <h4>Department: @Model.Patient.PhotoPath</h4>
+
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="Employees" asp-action="index" class="btn btn-primary">Back</a>
+                <a asp-controller="Employees" asp-action="Edit" asp-route-id="@Model.Patient.Id" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div>
+        Name : @Model.Employee.Name
+    </div>
+    <div>
+        Email : @Model.Employee.Email
+    </div>
+    <div>
+        Department : @Model.Employee.Department
+    </div>*@
+
+
+@section Scripts{
+
+    <script src="~/js/CustomScript.js"></script>
+
+}
+

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HospitalMMS.Modules.AllCommonModelClass.Models;
 using HospitalMMS.Modules.EmployeeModule;
+using HospitalMMS.Modules.PatientModules;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,31 +13,32 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalMMS.Controllers
 {
-    public class EmployeesController : Controller
+    public class PatientsController : Controller
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IPatientRepository _patientRepository;
         private readonly IHostingEnvironment hostingEnvironment;
 
-        public EmployeesController(IEmployeeRepository employeeRepository, IHostingEnvironment hostingEnvironment)
+        public PatientsController(IPatientRepository patientRepository, IHostingEnvironment hostingEnvironment)
         {
-            _employeeRepository = employeeRepository;
+            _patientRepository = patientRepository;
             this.hostingEnvironment = hostingEnvironment;
         }
+        // GET: /<controller>/
         public IActionResult Index()
         {
-            var model = _employeeRepository.GetAllEmployees();
+            var model = _patientRepository.GetAllPatient();
             return View(model);
         }
 
         public ViewResult Details(int id)
         {
-            EmployeeViewModel employeeViewModel = new EmployeeViewModel()
+            PatientViewModel patientViewModel = new PatientViewModel()
             {
-                Employee = _employeeRepository.GetEmployee(id),
-                PageTitle = "Employee Details"
+                Patient = _patientRepository.GetPatient(id),
+                PageTitle = "Patient Details"
             };
 
-            return View(employeeViewModel);
+            return View(patientViewModel);
         }
 
         [HttpGet]
@@ -46,7 +48,7 @@ namespace HospitalMMS.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(EmployeeViewModel model)
+        public IActionResult Create(PatientViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -60,22 +62,23 @@ namespace HospitalMMS.Controllers
                     model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
                 }
 
-                Employee newEmployee = new Employee
+                Patient newPatient = new Patient
                 {
                     PersonId = model.PersonId,
-                    SpecialtyId = model.SpecialtyId,
-                    PositionId = model.PositionId,
-                    Salary = model.Salary,
+                    ProblemCategoryId = model.ProblemCategoryId,
+                    ProblemDescription = model.ProblemDescription,
+                    EmployeeId = model.EmployeeId,
+                    Date = model.Date,
                     IUser = 1,
                     IDate = DateTime.Now,
-                    EUser= 0,
+                    EUser = 0,
                     EDate = null,
 
                     PhotoPath = uniqueFileName
                 };
 
-                _employeeRepository.Add(newEmployee);
-                return RedirectToAction("details", new { id = newEmployee.Id });
+                _patientRepository.Add(newPatient);
+                return RedirectToAction("details", new { id = newPatient.Id });
             }
 
             return View();
@@ -84,18 +87,20 @@ namespace HospitalMMS.Controllers
         [HttpGet]
         public ViewResult Edit(int id)
         {
-            Employee employee = _employeeRepository.GetEmployee(id);
-            EmployeeViewModel employeeEditViewModel = new EmployeeViewModel
+            
+            Patient patient = _patientRepository.GetPatient(id);
+            PatientViewModel patientViewModel = new PatientViewModel
             {
-                Id = employee.Id,
-                PersonId = employee.PersonId,
-                SpecialtyId = employee.SpecialtyId,
-                PositionId = employee.PositionId,
-                Salary = employee.Salary,
-                
-                ExistingPhotoPath = employee.PhotoPath
+                Ids = patient.Id,
+                PersonId = patient.PersonId,
+                ProblemCategoryId = patient.ProblemCategoryId,
+                ProblemDescription = patient.ProblemDescription,
+                EmployeeId = patient.EmployeeId,
+                Date = patient.Date,
+
+                ExistingPhotoPath = patient.PhotoPath
             };
-            return View(employeeEditViewModel);
+            return View(patientViewModel);
         }
 
     }

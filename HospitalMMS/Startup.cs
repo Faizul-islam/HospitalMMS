@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using HospitalMMS.Data;
 using HospitalMMS.Modules.AccountModule.Models;
+using HospitalMMS.Modules.EmployeeModule;
+using HospitalMMS.Modules.PatientModules;
 using HospitalMMS.Modules.PersonModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -52,7 +54,15 @@ namespace HospitalMMS
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
 
-          //  services.AddScoped<IPersonRepository, SQLPersonRepository>();
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+
+            services.AddSession();
+
+            services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
+            services.AddScoped<IPatientRepository, SQLPatientRepository>();
+
+           
+            //  services.AddScoped<IPersonRepository, SQLPersonRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

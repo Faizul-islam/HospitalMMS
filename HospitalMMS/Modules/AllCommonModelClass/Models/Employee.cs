@@ -17,10 +17,10 @@ namespace HospitalMMS.Modules.AllCommonModelClass.Models
         public decimal Salary { get; set; }
         public string PhotoPath { get; set; }
 
-        public int IUser { get; set; }
-        public DateTime IDate { get; set; }
-        public int EUsaer { get; set; }
-        public DateTime EDate { get; set; }
+        public int? IUser { get; set; }
+        public DateTime? IDate { get; set; }
+        public int? EUser { get; set; }
+        public DateTime? EDate { get; set; }
 
     }
 }
